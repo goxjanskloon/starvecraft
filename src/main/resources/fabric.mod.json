@@ -1,0 +1,40 @@
+{
+	"schemaVersion": 1,
+	"id": "starvecraft",
+	"version": "1.0-SNAPSHOT",
+	"name": "Starvecraft",
+	"description": "Bring some of Don't Starve (Together) to Minecraft",
+	"authors": [
+		"goxjanskloon"
+	],
+	"license": "MIT",
+	"icon": "assets/starvecraft/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"goxjanskloon.starvecraft.Starvecraft"
+		],
+		"client": [
+			"goxjanskloon.starvecraft.client.StarvecraftClient"
+		]
+	},
+	"mixins": [
+		"starvecraft.mixins.json"
+	],
+	"custom": {
+		"loom:injected_interfaces": {
+			"net/minecraft/class_1657": ["goxjanskloon/starvecraft/entity/player/SanityManagerGetter"],
+			"net/minecraft/class_2602": ["goxjanskloon/starvecraft/client/network/OnSanityUpdateInvoker"]
+		}
+	},
+	"depends": {
+		"fabricloader": ">=0.16.10",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"accessWidener":"starvecraft.accesswidener",
+	"suggests": {
+		"another-mod": "*"
+	}
+}

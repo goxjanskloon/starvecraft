@@ -57,7 +57,7 @@ public class SanityManager{
         ItemStack headStack=player.getEquippedStack(EquipmentSlot.HEAD);
         if(headStack.isOf(Items.GARLAND)){
             currentModifier+=1/2250f;
-            headStack.damage();
+            headStack.damage(1,player,EquipmentSlot.HEAD);
         }
         add(currentModifier);
         modifier=currentModifier;

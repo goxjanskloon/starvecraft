@@ -15,7 +15,7 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Identifier;
 public interface Items{
-    Item GARLAND=register("garland",new Item.Settings().maxDamage(7200).component(DataComponentTypes.EQUIPPABLE,EquippableComponent.builder(EquipmentSlot.HEAD).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER).model(EquipmentAssetKeys.GARLAND).damageOnHurt(false).build()));
+    Item GARLAND=register("garland",new Item.Settings().maxDamage(144000).component(DataComponentTypes.EQUIPPABLE,EquippableComponent.builder(EquipmentSlot.HEAD).equipSound(SoundEvents.ITEM_ARMOR_EQUIP_LEATHER).model(EquipmentAssetKeys.GARLAND).damageOnHurt(false).build()));
     static Item register(String id,Item.Settings settings){
         RegistryKey<Item> key=RegistryKey.of(RegistryKeys.ITEM,Identifier.of(Starvecraft.MOD_ID,id));
         Item item=new Item(settings.registryKey(key));

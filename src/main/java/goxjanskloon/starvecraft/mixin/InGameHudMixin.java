@@ -1,7 +1,6 @@
 package goxjanskloon.starvecraft.mixin;
 import goxjanskloon.starvecraft.Starvecraft;
 import goxjanskloon.starvecraft.entity.player.SanityManager;
-import goxjanskloon.starvecraft.entity.player.SanityManagerGetter;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.hud.InGameHud;
 import net.minecraft.client.render.RenderLayer;
@@ -26,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     @Shadow private int ticks;
     @Shadow @Final private Random random;
     @Unique private void renderSanity(DrawContext context,PlayerEntity player,int top,int right){
-        SanityManager sanityManager=((SanityManagerGetter)player).getSanityManager();
+        SanityManager sanityManager=player.getSanityManager();
         int sanityLevel=MathHelper.ceil(sanityManager.getSanityLevel());
         boolean isVibrating=sanityManager.getModifier()<0&&ticks%(sanityLevel*3+1)==0;
         for(int i=0;i<10;++i){

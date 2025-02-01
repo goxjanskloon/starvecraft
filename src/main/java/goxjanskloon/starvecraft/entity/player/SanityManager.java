@@ -1,8 +1,6 @@
 package goxjanskloon.starvecraft.entity.player;
-import goxjanskloon.starvecraft.Starvecraft;
 import goxjanskloon.starvecraft.item.Items;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -11,8 +9,6 @@ import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
-
-import java.util.Arrays;
 public class SanityManager{
     public static final float MAX_SANITY_LEVEL=20f;
     private float sanityLevel=MAX_SANITY_LEVEL,modifier=0f;
@@ -54,11 +50,8 @@ public class SanityManager{
         }else currentModifier=1/4800f;
         if(player.isWet())
             currentModifier-=1/2000f;
-        ItemStack headStack=player.getEquippedStack(EquipmentSlot.HEAD);
-        if(headStack.isOf(Items.GARLAND)){
+        if(player.getEquippedStack(EquipmentSlot.HEAD).isOf(Items.GARLAND))
             currentModifier+=1/2250f;
-            headStack.damage(1,player,EquipmentSlot.HEAD);
-        }
         add(currentModifier);
         modifier=currentModifier;
     }

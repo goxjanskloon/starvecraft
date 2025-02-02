@@ -2,7 +2,6 @@ package goxjanskloon.starvecraft.entity.player;
 import goxjanskloon.starvecraft.item.Items;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -12,9 +11,6 @@ import net.minecraft.util.math.MathHelper;
 public class SanityManager{
     public static final float MAX_SANITY_LEVEL=20f;
     private float sanityLevel=MAX_SANITY_LEVEL,modifier=0f;
-    public void add(float sanityLevelModifier){
-        sanityLevel=MathHelper.clamp(sanityLevel+sanityLevelModifier,0f,MAX_SANITY_LEVEL);
-    }
     public float getSanityLevel(){
         return sanityLevel;
     }
@@ -38,13 +34,11 @@ public class SanityManager{
         float currentModifier=0f;
         ServerWorld serverWorld=player.getServerWorld();
         if(serverWorld.isNight()||serverWorld.getLightLevel(player.getBlockPos())<=7){
-            for(ItemStack itemStack:player.getHandItems()){
-                Item item=itemStack.getItem();
-                if(item instanceof BlockItem blockItem&&blockItem.getBlock().getDefaultState().getLuminance()>0){
+            for(ItemStack itemStack:player.getHandItems())
+                if(itemStack.getItem() instanceof BlockItem blockItem&&blockItem.getBlock().getDefaultState().getLuminance()>0){
                     currentModifier=-1/900f;
                     break;
                 }
-            }
             if(currentModifier==0f)
                 currentModifier=-1/60f;
         }else currentModifier=1/4800f;
@@ -52,7 +46,6 @@ public class SanityManager{
             currentModifier-=1/2000f;
         if(player.getEquippedStack(EquipmentSlot.HEAD).isOf(Items.GARLAND))
             currentModifier+=1/2250f;
-        add(currentModifier);
-        modifier=currentModifier;
+        sanityLevel=MathHelper.clamp(sanityLevel+(modifier=currentModifier),0f,MAX_SANITY_LEVEL);
     }
 }

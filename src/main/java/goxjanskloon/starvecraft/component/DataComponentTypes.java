@@ -22,6 +22,7 @@ public interface DataComponentTypes{
     ComponentType<Boolean> WATERPROOF=register("waterproof",builder->builder.packetCodec(PacketCodecs.BOOLEAN));
     ComponentType<Boolean> PERISHABLE=register("perishable",builder->builder.packetCodec(PacketCodecs.BOOLEAN));
     ComponentType<Float> DECAY_SPEED=register("decay_speed",builder->builder.packetCodec(PacketCodecs.FLOAT));
+    ComponentType<Float> SANITY_MODIFIER=register("sanity_modifier",builder->builder.packetCodec(PacketCodecs.FLOAT));
     ComponentMap DEFAULT_ITEM_COMPONENTS=ComponentMap.builder().add(MAX_STACK_SIZE,64).add(LORE,LoreComponent.DEFAULT).add(ENCHANTMENTS,ItemEnchantmentsComponent.DEFAULT).add(REPAIR_COST,0).add(ATTRIBUTE_MODIFIERS,AttributeModifiersComponent.DEFAULT).add(RARITY,Rarity.COMMON).add(WET,false).add(WATERPROOF,false).add(PERISHABLE,false).build();
     static <T> ComponentType<T> register(String id,UnaryOperator<ComponentType.Builder<T>> builderOperator){
         return Registry.register(Registries.DATA_COMPONENT_TYPE,Identifier.of(Starvecraft.MOD_ID,id),(builderOperator.apply(ComponentType.builder())).build());

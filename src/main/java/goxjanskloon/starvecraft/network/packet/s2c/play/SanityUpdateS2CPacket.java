@@ -1,13 +1,11 @@
 package goxjanskloon.starvecraft.network.packet.s2c.play;
 import goxjanskloon.starvecraft.Starvecraft;
-import goxjanskloon.starvecraft.client.network.OnSanityUpdateInvoker;
 import net.minecraft.network.NetworkSide;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.codec.PacketCodec;
 import net.minecraft.network.listener.ClientPlayPacketListener;
 import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.PacketType;
-import net.minecraft.network.packet.s2c.play.HealthUpdateS2CPacket;
 import net.minecraft.util.Identifier;
 public class SanityUpdateS2CPacket implements Packet<ClientPlayPacketListener>{
     public static final PacketCodec<PacketByteBuf,SanityUpdateS2CPacket> CODEC=Packet.createCodec(SanityUpdateS2CPacket::write,SanityUpdateS2CPacket::new);
@@ -35,6 +33,6 @@ public class SanityUpdateS2CPacket implements Packet<ClientPlayPacketListener>{
         return PACKET_TYPE;
     }
     @Override public void apply(ClientPlayPacketListener listener){
-        ((OnSanityUpdateInvoker)listener).onSanityUpdate(this);
+        listener.onSanityUpdate(this);
     }
 }

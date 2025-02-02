@@ -7,6 +7,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.At;
@@ -31,8 +32,11 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     }
     @Inject(method="readCustomDataFromNbt",at=@At("TAIL")) public void readCustomDataFromNbt(NbtCompound nbt,CallbackInfo ci){
         sanityManager.readNbt(nbt);
+        if(nbt.contains("garlandTicker",NbtElement.INT_TYPE))
+            garlandTicker=nbt.getByte("garlandTicker");
     }
     @Inject(method="writeCustomDataToNbt",at=@At("TAIL")) public void writeCustomDataToNbt(NbtCompound nbt,CallbackInfo ci){
         sanityManager.writeNbt(nbt);
+        nbt.putInt("garlandTicker",garlandTicker);
     }
 }

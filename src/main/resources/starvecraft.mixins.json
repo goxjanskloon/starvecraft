@@ -3,7 +3,7 @@
     "package":"goxjanskloon.starvecraft.mixin",
     "compatibilityLevel":"JAVA_21",
     "mixins":[
-        "Item$SettingsMixin",
+        "ItemStackMixin",
         "PlayerEntityMixin",
         "PlayStateFactoriesMixin",
         "ServerPlayerEntityMixin"

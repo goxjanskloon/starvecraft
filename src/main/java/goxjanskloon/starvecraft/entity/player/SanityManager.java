@@ -1,6 +1,5 @@
 package goxjanskloon.starvecraft.entity.player;
-import goxjanskloon.starvecraft.item.Items;
-import net.minecraft.entity.EquipmentSlot;
+import goxjanskloon.starvecraft.component.DataComponentTypes;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -24,11 +23,11 @@ public class SanityManager{
         this.modifier=modifier;
     }
     public void readNbt(NbtCompound nbt){
-        if(nbt.contains("SanityLevel",NbtElement.NUMBER_TYPE))
-            sanityLevel=nbt.getFloat("SanityLevel");
+        if(nbt.contains("sanityLevel",NbtElement.NUMBER_TYPE))
+            sanityLevel=nbt.getFloat("sanityLevel");
     }
     public void writeNbt(NbtCompound nbt){
-        nbt.putFloat("SanityLevel",sanityLevel);
+        nbt.putFloat("sanityLevel",sanityLevel);
     }
     public void update(ServerPlayerEntity player){
         float currentModifier=0f;
@@ -44,8 +43,8 @@ public class SanityManager{
         }else currentModifier=1/4800f;
         if(player.isWet())
             currentModifier-=1/2000f;
-        if(player.getEquippedStack(EquipmentSlot.HEAD).isOf(Items.GARLAND))
-            currentModifier+=1/2250f;
+        for(ItemStack itemStack:player.getEquippedItems())
+            currentModifier+=itemStack.getComponents().getOrDefault(DataComponentTypes.SANITY_MODIFIER,0f);
         sanityLevel=MathHelper.clamp(sanityLevel+(modifier=currentModifier),0f,MAX_SANITY_LEVEL);
     }
 }

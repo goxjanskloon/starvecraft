@@ -33,6 +33,6 @@ public class SanityUpdateS2CPacket implements Packet<ClientPlayPacketListener>{
         return PACKET_TYPE;
     }
     @Override public void apply(ClientPlayPacketListener listener){
-        listener.onSanityUpdate(this);
+        listener.starvecraft$onSanityUpdate(this);
     }
 }

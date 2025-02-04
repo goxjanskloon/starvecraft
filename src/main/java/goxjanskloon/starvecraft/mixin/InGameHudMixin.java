@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     @Shadow private int ticks;
     @Shadow @Final private Random random;
     @Unique private void renderSanity(DrawContext context,PlayerEntity player,int top,int right){
-        SanityManager sanityManager=player.getSanityManager();
+        SanityManager sanityManager=player.starvecraft$getSanityManager();
         int sanityLevel=MathHelper.ceil(sanityManager.getSanityLevel());
         boolean isVibrating=sanityManager.getModifier()<0&&ticks%(sanityLevel*3+1)==0;
         for(int i=0;i<10;++i){

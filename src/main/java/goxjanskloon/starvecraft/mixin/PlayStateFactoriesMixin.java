@@ -1,6 +1,5 @@
 package goxjanskloon.starvecraft.mixin;
 import goxjanskloon.starvecraft.network.packet.s2c.play.SanityUpdateS2CPacket;
-import io.netty.buffer.ByteBuf;
 import net.minecraft.network.NetworkStateBuilder;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.network.listener.ClientPlayPacketListener;

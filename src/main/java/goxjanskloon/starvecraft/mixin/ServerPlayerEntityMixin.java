@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     @Unique private float syncedSanityModifier=-1e8f;
     @Inject(method="playerTick",at=@At("TAIL")) public void playerTick(CallbackInfo ci){
         try{
-            SanityManager sanityManager=((SanityManagerGetter)this).getSanityManager();
+            SanityManager sanityManager=((SanityManagerGetter)this).starvecraft$getSanityManager();
             float sanityLevel=sanityManager.getSanityLevel(), sanityModifier=sanityManager.getModifier();
             if(syncedSanityLevel!=sanityManager.getSanityLevel()||syncedSanityModifier!=sanityManager.getModifier()){
                 networkHandler.sendPacket(new SanityUpdateS2CPacket(sanityLevel,sanityModifier));

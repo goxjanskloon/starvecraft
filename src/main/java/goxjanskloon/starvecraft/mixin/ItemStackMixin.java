@@ -29,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
                 else if(++decayTicker>=ticksPerDecay){
                     set(DataComponentTypes.DECAY_TICKER,0);
                     damage(1,null);
-                }
+                }else set(DataComponentTypes.DECAY_TICKER,decayTicker);
             }
     }
 }

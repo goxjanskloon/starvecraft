@@ -32,7 +32,7 @@ public class SanityManager{
     public void update(ServerPlayerEntity player){
         float currentModifier=0f;
         ServerWorld serverWorld=player.getServerWorld();
-        if(serverWorld.isNight()||serverWorld.getLightLevel(player.getBlockPos())<=7){
+        if(serverWorld.isNight()||serverWorld.getLightLevel(player.getBlockPos())==0){
             for(ItemStack itemStack:player.getHandItems())
                 if(itemStack.getItem() instanceof BlockItem blockItem&&blockItem.getBlock().getDefaultState().getLuminance()>0){
                     currentModifier=-1/900f;

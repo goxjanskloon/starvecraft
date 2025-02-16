@@ -1,5 +1,5 @@
 package goxjanskloon.starvecraft.entity.player;
-public interface SanityManagerGetter{
+public interface PlayerEntity{
     default SanityManager starvecraft$getSanityManager(){
         return null;
     }

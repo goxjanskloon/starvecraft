@@ -1,6 +1,6 @@
 package goxjanskloon.starvecraft.mixin;
 import goxjanskloon.starvecraft.entity.player.SanityManager;
-import goxjanskloon.starvecraft.entity.player.SanityManagerGetter;
+import goxjanskloon.starvecraft.entity.player.PlayerEntity;
 import goxjanskloon.starvecraft.network.packet.s2c.play.SanityUpdateS2CPacket;
 import net.minecraft.entity.Entity;
 import net.minecraft.server.network.ServerPlayNetworkHandler;
@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
     @Unique private float syncedSanityModifier=-1e8f;
     @Inject(method="playerTick",at=@At("TAIL")) public void playerTick(CallbackInfo ci){
         try{
-            SanityManager sanityManager=((SanityManagerGetter)this).starvecraft$getSanityManager();
+            SanityManager sanityManager=((PlayerEntity)this).starvecraft$getSanityManager();
             float sanityLevel=sanityManager.getSanityLevel(), sanityModifier=sanityManager.getModifier();
             if(syncedSanityLevel!=sanityManager.getSanityLevel()||syncedSanityModifier!=sanityManager.getModifier()){
                 networkHandler.sendPacket(new SanityUpdateS2CPacket(sanityLevel,sanityModifier));

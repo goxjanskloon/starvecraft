@@ -23,8 +23,8 @@
 	],
 	"custom": {
 		"loom:injected_interfaces": {
-			"net/minecraft/class_1657": ["goxjanskloon/starvecraft/entity/player/SanityManagerGetter"],
-			"net/minecraft/class_2602": ["goxjanskloon/starvecraft/client/network/OnSanityUpdateInvoker"]
+			"net/minecraft/class_1657": ["goxjanskloon/starvecraft/entity/player/PlayerEntity"],
+			"net/minecraft/class_2602": ["goxjanskloon/starvecraft/client/network/ClientPlayPacketListener"]
 		}
 	},
 	"depends": {
